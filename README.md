@@ -1,12 +1,7 @@
 Hi! 
 To use the patch, simply run this command:
 ```
-curl -sSL https://raw.githubusercontent.com/DaCUtePotato/omori-apple-intel/main/script.sh | bash
-```
-
-or 
-```
-wget -qO- https://raw.githubusercontent.com/DaCUtePotato/omori-apple-intel/main/script.sh | bash
+bash <(curl -s https://raw.githubusercontent.com/DaCUtePotato/omori-apple-intel/master/omori.sh)
 ```
 
 For manual install, download the repository and run this command:
