@@ -27,7 +27,7 @@ if [ -f "${OMORI}/OMORI.original.app" ]; then
 fi;
 cp -r "${OMORI}/OMORI.app" "${OMORI}/OMORI.original.app";
 
-TMPFOLDER=mktemp -d /tmp/omori-patch.XXXXXX || exit 1
+TMPFOLDER=$(mktemp -d /tmp/omori-patch.XXXXXX) || exit 1
 cd $TMPFOLDER;
 
 mv "${OMORI}/OMORI.app" "./OMORI.original.app";
