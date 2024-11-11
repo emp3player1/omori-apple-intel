@@ -5,10 +5,6 @@ echo "/-------------------------------------------\\"
 echo "|     - OMORI PATCH TOOL FOR INTEL -        |"
 echo "|             by Snowp and ynx0             |"
 echo "|                                           |"
-echo "|                 edited by                 |"
-echo "|         DaCutePotato & zadowcloud         |"
-echo "|                                           |"
-echo "|                                           |"
 echo "| github.com/SnowpMakes/omori-apple-silicon |"
 echo "|             https://snowp.io              |"
 echo "\\-------------------------------------------/"
@@ -16,21 +12,21 @@ echo ""
 
 OMORI=~/Library/Application\ Support/Steam/steamapps/common/OMORI
 
-if [ ! -d "${OMORI}" ] || [ ! -d "${OMORI}/OMORI.app" ]; then
-  echo "[!!] Please install OMORI using Steam before using this tool."
-  exit 1
-fi
+if [ ! -d "${OMORI}" ]; then
+  echo "[!!] Please make sure Omori.app is located in ~/Desktop/gems before using this tool.";
+  exit 1;
+fi;
 
-echo "Backing up original OMORI copy.."
-if [ -f "${OMORI}/OMORI.original.app" ]; then
-  rm -rf "${OMORI}/OMORI.original.app"
-fi
-cp -r "${OMORI}/OMORI.app" "${OMORI}/OMORI.original.app"
+echo "Backing up original Omori.app.."
+if [ -f "${OMORI}.original" ]; then
+  rm -rf "${OMORI}.original"
+fi;
+cp -r "${OMORI}" "${OMORI}.original";
 
 TMPFOLDER=$(mktemp -d /tmp/omori-patch.XXXXXX) || exit 1
-cd $TMPFOLDER
+cd "$TMPFOLDER";
 
-mv "${OMORI}/OMORI.app" "./OMORI.original.app"
+mv "${OMORI}" "./Omori.original.app";
 
 echo "Downloading nwjs for Intel.."
 curl -# -o nwjs.zip https://dl.nwjs.io/v0.77.0/nwjs-v0.77.0-osx-x64.zip
@@ -43,38 +39,26 @@ echo "Downloading steamworks api.."
 curl -# -o steam.zip https://dl.snowp.io/omori-apple-silicon/steam.zip
 
 echo "Extracting nwjs.."
-unzip -q nwjs.zip || { echo "Failed to extract nwjs.zip"; exit 1; }
+unzip -q nwjs.zip
 echo "Extracting steamworks.."
-unzip -qq steam.zip || { echo "Failed to extract steam.zip"; exit 1; }
+unzip -qq steam.zip
 
-# Ensure that extracted files and directories exist before moving
-if [ -d "./nwjs-v0.77.0-osx-x64/nwjs.app" ]; then
-  mv ./nwjs-v0.77.0-osx-x64/nwjs.app ./OMORI.app
-else
-  echo "nwjs.app not found in expected directory."
-  exit 1
-fi
-
-# Ensure OMORI.app exists before moving files into it
-if [ ! -d "./OMORI.app" ]; then
-  echo "OMORI.app was not created."
-  exit 1
-fi
-
-# Move files and check existence
 echo "Patching game.."
-[ -f "./OMORI.original.app/Contents/Resources/app.nw" ] && mv -f ./OMORI.original.app/Contents/Resources/app.nw ./OMORI.app/Contents/Resources/
-[ -f "./OMORI.original.app/Contents/Resources/app.icns" ] && mv -f ./OMORI.original.app/Contents/Resources/app.icns ./OMORI.app/Contents/Resources/
-[ -f "./node-polyfill-patch.js" ] && mv -f ./node-polyfill-patch.js ./OMORI.app/Contents/Resources/app.nw/js/libs/
-[ -f "./greenworks.js" ] && mv -f ./greenworks.js ./OMORI.app/Contents/Resources/app.nw/js/libs/
-[ -f "./greenworks-osxx64.node" ] && mv -f ./greenworks-osxx64.node ./OMORI.app/Contents/Resources/app.nw/js/libs/
-[ -f "./steam/libsteam_api.dylib" ] && mv -f ./steam/libsteam_api.dylib ./OMORI.app/Contents/Resources/app.nw/js/libs/
-[ -f "./steam/libsdkencryptedappticket.dylib" ] && mv -f ./steam/libsdkencryptedappticket.dylib ./OMORI.app/Contents/Resources/app.nw/js/libs/
+mv ./nwjs-v0.77.0-osx-x64/nwjs.app ./Omori.app
+mv -f ./Omori.original.app/Contents/Resources/app.nw ./Omori.app/Contents/Resources/
+mv -f ./Omori.original.app/Contents/Resources/app.icns ./Omori.app/Contents/Resources/
+mv -f ./node-polyfill-patch.js ./Omori.app/Contents/Resources/app.nw/js/libs/
+mv -f ./greenworks.js ./Omori.app/Contents/Resources/app.nw/js/libs/
+mv -f ./greenworks-osxx64.node ./Omori.app/Contents/Resources/app.nw/js/libs/
+mv -f ./steam/libsteam_api.dylib ./Omori.app/Contents/Resources/app.nw/js/libs/
+mv -f ./steam/libsdkencryptedappticket.dylib ./Omori.app/Contents/Resources/app.nw/js/libs/
 
-echo "Finished. Moving patched game back to original location.."
-mv "./OMORI.app" "${OMORI}/OMORI.app"
+echo "Finished. Moving patched Omori.app back to original location.."
+mv "./Omori.app" "${OMORI}"
 
 echo ""
-echo "Done! Launch OMORI through Steam."
-echo "Note that if you update OMORI or check the integrity of the game files, you'll need to reapply the patch."
+echo "Done! You can now launch Omori."
+echo "Note that if you update Omori or check the integrity of the game files, you'll need to reapply the patch."
 echo ""
+echo ""
+
