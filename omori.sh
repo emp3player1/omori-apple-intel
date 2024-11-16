@@ -13,7 +13,7 @@ echo ""
 OMORI=~/Library/Application\ Support/Steam/steamapps/common/OMORI
 
 if [ ! -d "${OMORI}" ]; then
-  echo "[!!] Please make sure Omori.app is located in ~/Desktop/gems before using this tool.";
+  echo "[!!] Please make sure you have Omori installed on steam before using this tool.";
   exit 1;
 fi;
 
