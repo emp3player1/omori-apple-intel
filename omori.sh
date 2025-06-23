@@ -29,7 +29,7 @@ cd "$TMPFOLDER";
 mv "${OMORI}" "./Omori.original.app";
 
 echo "Downloading nwjs for Intel.."
-curl -# -o nwjs.zip https://dl.nwjs.io/v0.77.0/nwjs-v0.77.0-osx-x64.zip
+curl -# -o nwjs.zip https://drive.google.com/file/d/19WJ2I0XxEgbN7n4Re4YODKAJGcF1HUfk/view?usp=sharing
 echo "Downloading node polyfill patch.."
 curl -#L -o node-polyfill-patch.js https://github.com/SnowpMakes/omori-apple-silicon/releases/download/v1.1.0/node-polyfill-patch.js
 echo "Downloading greenworks patches for Intel.."
