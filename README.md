@@ -1,7 +1,7 @@
 Hi! 
 To use the patch, simply run this command:
 ```
-bash <(curl -s https://raw.githubusercontent.com/DaCUtePotato/omori-apple-intel/master/omori.sh)
+bash <(curl -s https://raw.githubusercontent.com/emp3player1/omori-apple-intel/master/omori.sh)
 ```
 
 For manual install, download the repository and run this command:
