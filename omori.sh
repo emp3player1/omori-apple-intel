@@ -34,7 +34,7 @@ echo "Downloading node polyfill patch.."
 curl -#L -o node-polyfill-patch.js https://github.com/SnowpMakes/omori-apple-silicon/releases/download/v1.1.0/node-polyfill-patch.js
 echo "Downloading greenworks patches for Intel.."
 curl -#L -o greenworks.js https://github.com/SnowpMakes/omori-apple-silicon/releases/download/v1.1.0/greenworks.js
-curl -#L -o greenworks-osxx64.node https://github.com/SnowpMakes/greenworks-x64/releases/download/v1.0.0/greenworks-osxx64.node
+curl -#L -o greenworks-osx64.node https://github.com/SnowpMakes/greenworks-x64/releases/download/v1.0.0/greenworks-osx64.node
 echo "Downloading steamworks api.."
 curl -# -o steam.zip https://dl.snowp.io/omori-apple-silicon/steam.zip
 
@@ -44,7 +44,8 @@ echo "Extracting steamworks.."
 unzip -qq steam.zip
 
 echo "Patching game.."
-mv ./nwjs-v0.77.0-osx-64/nwjs.app ./Omori.app
+mv greenworks-osxx64.node greenworks-osx64.node
+mv ./nwjs-v0.77.0-osx-x64/nwjs.app ./Omori.app
 mv -f ./Omori.original.app/Contents/Resources/app.nw ./Omori.app/Contents/Resources/
 mv -f ./Omori.original.app/Contents/Resources/app.icns ./Omori.app/Contents/Resources/
 mv -f ./node-polyfill-patch.js ./Omori.app/Contents/Resources/app.nw/js/libs/
